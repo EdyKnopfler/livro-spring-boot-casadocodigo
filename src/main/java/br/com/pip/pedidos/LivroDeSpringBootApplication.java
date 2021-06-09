@@ -1,4 +1,4 @@
-package br.com.pip.livrospringbootcasadocodigo;
+package br.com.pip.pedidos;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
