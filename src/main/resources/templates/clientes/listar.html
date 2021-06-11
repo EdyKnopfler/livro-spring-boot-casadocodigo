@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="~{layout :: headsection}"></head>
+      
+<body>
+	<nav th:replace="~{layout :: navsection}"></nav>
+	<div class="container">
+		<h1 class="lead">Clientes</h1>
+		<p class="alert alert-success" th:if="${globalMessage}" th:text="${globalMessage"></p>
+		<p>
+			<a th:href="@{/clientes/novo}">Novo</a>
+		</p>
+		<table class="table table-bordered table-striped">
+			<thread>
+				<tr>
+					<td>ID</td>
+					<td>Nome</td>
+				</tr>
+			</thread>
+			<tbody>
+				<tr th:if="${clientes.empty}">
+					<td colspan="3">Sem clientes.</td>
+				</tr>
+				<tr th:each="cliente : ${clientes}">
+					<td th:text="${cliente.id}"></td>
+					<td>
+						<a th:href="@{'/clientes/'+${cliente.id}}" th:text="${cliente.nome}"></a>
+					</td>
+					<td>
+						<a th:href="@{'/clientes/alterar/'+${cliente.id}}">Alterar</a>
+					</td>
+					<td>
+						<a class="remover" th:href="@{'/clientes/remover/'+${cliente.id}}">Remover</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script th:replace="~{layout :: remover_confirm}"></script>
+</body>
+
+</html>

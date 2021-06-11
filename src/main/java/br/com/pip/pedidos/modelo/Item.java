@@ -6,8 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 public class Item {
@@ -16,16 +14,24 @@ public class Item {
 		this.nome = nome;
 		this.preco = preco;
 	}
+	
+	public Item() {
+	}
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull
-	@Size(min = 2, max = 50, message = "O nome deve ter entre {min} e {max} caracteres.")
 	private String nome;
 	
-	@NotNull
 	private BigDecimal preco;
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
 
 	public BigDecimal getPreco() {
 		return preco;

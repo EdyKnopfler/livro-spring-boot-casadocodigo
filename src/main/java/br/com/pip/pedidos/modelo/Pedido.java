@@ -12,15 +12,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.Min;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Pedido {
 	
 	public Pedido(Cliente cliente) {
 		this.cliente = cliente;
+	}
+	
+	public Pedido() {
 	}
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY) 
@@ -32,15 +32,35 @@ public class Pedido {
 	@ManyToMany(cascade = CascadeType.MERGE)
 	private List<Item> itens = new ArrayList<>();
 	
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private LocalDate data = LocalDate.now();
 	
-	@Min(1)
 	private BigDecimal valorTotal = new BigDecimal(0.00);
 
 	public void adiciona(Item item) {
 		itens.add(item);
 		valorTotal = valorTotal.add(item.getPreco());
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public LocalDate getData() {
+		return data;
+	}
+
+	public List<Item> getItens() {
+		return itens;
+	}
+
+	public BigDecimal getValorTotal() {
+		return valorTotal;
+	}
+	
+	
 
 }

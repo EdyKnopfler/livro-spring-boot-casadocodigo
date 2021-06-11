@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="~{layout :: headsection}"></head>
+      
+<body>
+	<nav th:replace="~{layout :: navsection}"></nav>
+	<div class="container">
+		<h1 class="lead mb-4" th:text="${titulo}"></h1>
+		<form th:object="${clienteForm}" th:action="@{/clientes/novo}" method="post">
+			<div th:replace="~{clientes/fields :: campos_cliente}"></div>
+		</form>
+	</div>
+</body>
+
+</html>

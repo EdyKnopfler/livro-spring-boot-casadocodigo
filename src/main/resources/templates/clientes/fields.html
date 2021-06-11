@@ -1,0 +1,23 @@
+<div th:fragment="campos_cliente">
+	<div th:if="${#fields.hasErrors('*')}" class="alert alert-error">
+		Atenção!
+	</div>
+	
+	<div class="form-group mb-3">
+		<label for="nome">Nome</label>
+		<input type="text" th:field="*{nome}"
+		       th:classappend="${#fields.hasErrors('nome')} ? 'field-error'"
+		       class="form-control">
+		<div class="small text-danger" th:errors="*{nome}"></div>
+	</div>
+	
+	<div class="form-group mb-3">
+		<label for="endereco">Endereço</label>
+		<input type="text" th:field="*{endereco}"
+		       th:classappend="${#fields.hasErrors('endereco')} ? 'field-error'"
+		       class="form-control">
+		<div class="small text-danger" th:errors="*{endereco}"></div>
+	</div>
+	
+	<button type="submit" class="btn btn-danger">Gravar</button>
+</div>

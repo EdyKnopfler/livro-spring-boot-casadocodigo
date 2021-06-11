@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="~{layout :: headsection}"></head>
+      
+<body>
+	<nav th:replace="~{layout :: navsection}"></nav>
+	<div class="container">
+		<h1 class="lead">Cliente: <u th:text="${cliente.nome}"></u></h1>
+		
+		<div class="row">
+			<div class="col-2">Endereço</div>
+			<div class="col-6" th:text="${cliente.endereco}"></div>
+			<div class="col-2">
+				<a th:href="@{'/clientes/alterar/'+${cliente.id}}">Alterar</a>			
+			</div>
+			<div class="col-2">
+				<a class="remover" th:href="@{'/clientes/remover/'+${cliente.id}}">Remover</a>
+			</div>
+		</div>
+	</div>
+	<script th:replace="~{layout :: remover_confirm}"></script>
+</body>
+
+</html>

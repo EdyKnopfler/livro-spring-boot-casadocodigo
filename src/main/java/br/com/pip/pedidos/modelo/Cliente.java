@@ -4,14 +4,10 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.Size;
-
-import com.sun.istack.NotNull;
 
 @Entity
 public class Cliente {
@@ -20,21 +16,42 @@ public class Cliente {
 		this.nome = nome;
 		this.endereco = endereco;
 	}
+	
+	public Cliente() {
+	}
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull 
-	@Size(min = 2, max = 50, message = "O nome deve ter entre {min} e {max} caracteres.")
 	private String nome;
 
-	@NotNull 
-	@Size(min = 2, max = 300, message = "O endereço deve ter entre {min} e {max} caracteres.")
 	private String endereco;
 	
-	@OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER, cascade = CascadeType.ALL)	
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)	
 	private List<Pedido> pedidos;
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
 	
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 	
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
 
 }
