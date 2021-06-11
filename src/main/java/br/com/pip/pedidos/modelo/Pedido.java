@@ -60,6 +60,14 @@ public class Pedido {
 	public BigDecimal getValorTotal() {
 		return valorTotal;
 	}
+
+	public static Pedido comItensPara(List<Item> itens, Cliente cliente) {
+		Pedido pedido = new Pedido(cliente);
+		for (Item i : itens) {
+			pedido.adiciona(i);
+		}
+		return pedido;
+	}
 	
 	
 
